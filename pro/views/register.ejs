@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css"/>
+<script src="/javascripts/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<title>Document</title>
+</head>
+<body>
+	
+	<h1>注册</h1>
+	<div>账号：<input type="text" class="user" /></div>
+	<div>密码：<input type="text" class="pass" /></div>
+	
+	<button class="btn btn-danger register">注册</button>
+	
+	
+</body>
+<script type="text/javascript">
+	
+	$('.register').click(function(){
+		$.ajax({
+			type:"post",
+			url:"/users/register",
+			data:{user:$('.user').val(),pass:$('.pass').val()},
+			success:function(data){
+				if(data==1){
+					alert('注册成功，1秒后跳转登录页面')
+					setTimeout(function(){
+						location.href='/login'
+					},1000)
+				}else{
+					alert('注册失败')
+				}
+			}
+		});
+	})
+	
+	
+</script>
+</html>
